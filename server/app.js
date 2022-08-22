@@ -2,6 +2,14 @@ import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// dirname
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 // Basic App Set up
 const port = 3000;
@@ -12,7 +20,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Handle Get Request
 
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/signup", (req, res) => {
+  res.sendFile(__dirname + "/public/signup.html");
 });
 
 app.listen(port, () => {
