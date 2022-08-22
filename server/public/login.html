@@ -12,7 +12,8 @@
       sizes="180x180"
       href="./images/favicon/apple-touch-icon.png"
     />
-    <link
+    <links.
+      ￼Login
       rel="icon"
       type="image/png"
       sizes="32x32"
@@ -36,9 +37,14 @@
   <body>
     <div class="container">
       <h1 class="title">Login</h1>
-      <form class="form">
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
+      <form class="form" action="/login" method="post">
+        <input
+          type="email"
+          placeholder="Email"
+          name="userEmail"
+          autocomplete="off"
+        />
+        <input type="password" placeholder="Password" name="userPassword" />
         <button type="submit">Login</button>
       </form>
     </div>

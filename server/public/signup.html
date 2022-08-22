@@ -36,10 +36,25 @@
   <body>
     <div class="container">
       <h1 class="title">Sign Up</h1>
-      <form class="form">
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <input type="password" placeholder="Confirm Password" />
+      <form class="form" action="/signup" method="post">
+        <input
+          type="text"
+          placeholder="Full Name"
+          name="userName"
+          autocomplete="off"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          name="userEmail"
+          autocomplete="off"
+        />
+        <input type="password" placeholder="Password" name="userPassword" />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          name="confirmPassword"
+        />
         <button type="submit">Register</button>
       </form>
     </div>
