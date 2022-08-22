@@ -2,15 +2,8 @@ import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import path from "path";
 import bcrypt from "bcrypt";
-import { fileURLToPath } from "url";
-
-// dirname
-
-const __filename = fileURLToPath(import.meta.url);
-
-const __dirname = path.dirname(__filename);
+import ejs from "ejs";
 
 // Basic App Set up
 const port = 3000;
