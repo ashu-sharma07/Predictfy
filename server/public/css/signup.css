@@ -22,8 +22,10 @@ body {
 
 .container {
   margin: 10% auto;
-  padding: 80px 0;
+  padding: 70px 40px;
   text-align: center;
+  border: solid 3px white;
+  width: max-content;
 }
 
 .container h1 {
