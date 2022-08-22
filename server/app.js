@@ -27,6 +27,10 @@ app.get("/signup", (req, res) => {
   res.sendFile(__dirname + "/public/signup.html");
 });
 
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/public/login.html");
+});
+
 app.listen(port, () => {
   console.log(`Application running on port ${port}.`);
 });
