@@ -35,7 +35,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signup", {
+    msg: "",
+  });
 });
 
 app.get("/login", (req, res) => {
@@ -45,22 +47,28 @@ app.get("/login", (req, res) => {
 // Handle Post Request
 
 app.post("/signup", (req, res) => {
-  bcrypt.hash(req.body.userPassword, saltRounds, function (err, hash) {
-    // Store hash in  password DB.
-    const newUser = new User({
-      userName: req.body.userName,
-      userEmail: req.body.userEmail,
-      userPassword: hash,
+  if (req.body.userPassword === req.body.confirmPassword) {
+    bcrypt.hash(req.body.userPassword, saltRounds, function (err, hash) {
+      // Store hash in  password DB.
+      const newUser = new User({
+        userName: req.body.userName,
+        userEmail: req.body.userEmail,
+        userPassword: hash,
+      });
+      newUser.save((err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          //console.log(newUser);
+          res.redirect("/");
+        }
+      });
     });
-    newUser.save((err) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(newUser);
-        res.redirect("/");
-      }
+  } else {
+    res.render("signup", {
+      msg: "Please Type the same password in both column",
     });
-  });
+  }
 });
 
 app.post("/login", (req, res) => {
