@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import ejs from "ejs";
+import axios from "axios";
 
 // Basic App Set up
 const port = 3000;
@@ -42,6 +43,10 @@ app.get("/signup", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.render("login", { msg: "" });
+});
+
+app.get("/pricepredict", (req, res) => {
+  res.render("pricepredict");
 });
 
 // Handle Post Request
@@ -91,6 +96,35 @@ app.post("/login", (req, res) => {
       }
     }
   });
+});
+
+app.post("/price_predict", (req, res) => {
+  async function doPostRequest() {
+    const URL = "http://127.0.0.1:5000/price_predict";
+    let payload = {
+      Item: req.body.item,
+      State: req.body.state,
+      Weekend: req.body.weekend,
+      Grade: req.body.grade,
+      Organic: req.body.organic,
+      RPS: req.body.rr,
+      DFD: req.body.dfd,
+      Freshness: req.body.freshness,
+      Seasonal: req.body.seasonal,
+      Otipy_Certified: req.body.otipy,
+      Unique_Customers: req.body.unique,
+      demand: req.body.demand,
+    };
+
+    let res = await axios.post(URL, payload);
+
+    let data = res.data;
+    console.log(data);
+    return data;
+  }
+
+  const result = doPostRequest();
+  res.render("")
 });
 
 app.listen(port, () => {
